@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ریاضی جامع | RAM HUB</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+:root { --bg:#fffef7; --card:#ffffff; --border:#fff0d6; --border2:#ffe2b5; --primary:#f9e0a0; --primary-h:#f7d97e; --text:#2d3e50; --text2:#5a6e7c; --accent:#c8821f; --accent2:#a0763a; --soft:#fefaf2; }
+body.dark { --bg:#1a1d24; --card:#252932; --border:#333846; --border2:#404657; --primary:#f9e0a0; --primary-h:#f7d97e; --text:#e8ecf1; --text2:#9ca6b5; --accent:#f9e0a0; --accent2:#d4b57a; --soft:#2a2f3a; }
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Inter','Segoe UI',system-ui,'Vazir',sans-serif; }
+body { background:var(--bg); padding:2rem 1.5rem; color:var(--text); transition:background .3s,color .3s; }
+.card { background:var(--card); border-radius:1.75rem; box-shadow:0 8px 20px rgba(0,0,0,0.02),0 2px 6px rgba(255,200,100,0.1); border:1px solid var(--border); overflow:hidden; }
+.btn { background:var(--soft); border:1px solid var(--border2); padding:0.6rem 1.2rem; border-radius:2rem; font-weight:500; font-size:0.85rem; cursor:pointer; color:var(--accent2); transition:all 0.2s ease; text-decoration:none; display:inline-flex; align-items:center; gap:0.5rem; justify-content:center; font-family:inherit; }
+.btn:hover { background:var(--border); }
+.btn-primary { background:var(--primary); border:none; color:#784a0e; box-shadow:0 2px 4px rgba(249,200,100,0.2); }
+.btn-primary:hover { background:var(--primary-h); transform:translateY(-2px); }
+.btn-gray { background:#f5f0e8; }
+.section { margin-bottom:2.5rem; }
+.section-title { font-size:1.5rem; font-weight:700; color:var(--accent); margin-bottom:1rem; padding-right:0.5rem; border-right:4px solid var(--primary); display:flex; align-items:center; gap:0.5rem; }
+.tools-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:1.5rem; }
+.tool-card { background:var(--card); border-radius:1.2rem; border:1px solid var(--border); overflow:hidden; transition:all 0.3s ease; box-shadow:0 4px 12px rgba(0,0,0,0.02); display:flex; flex-direction:column; text-decoration:none; color:inherit; }
+.tool-card:hover { transform:translateY(-5px); box-shadow:0 12px 24px rgba(0,0,0,0.05); border-color:var(--border2); }
+.card-icon { width:100%; height:110px; display:flex; align-items:center; justify-content:center; font-size:2.8rem; color:#e5a12e; background:var(--soft); border-bottom:2px solid var(--border); }
+.card-content { padding:1.2rem; display:flex; flex-direction:column; flex-grow:1; }
+.card-title { font-size:1.15rem; font-weight:700; color:var(--accent); margin-bottom:0.4rem; }
+.card-desc { color:var(--text2); font-size:0.85rem; line-height:1.6; margin-bottom:1rem; flex-grow:1; }
+h1 { font-weight:700; color:var(--accent); letter-spacing:-0.3px; }
+header.top { text-align:center; margin-bottom:2rem; }
+header.top a.home { color:var(--accent); text-decoration:none; }
+.hero p { color:var(--accent2); max-width:650px; margin:0.5rem auto 0; font-size:0.9rem; }
+footer { text-align:center; margin-top:2rem; font-size:0.7rem; color:#bfae95; border-top:1px solid var(--border); padding-top:1rem; }
+.search-box { width:100%; padding:0.9rem 1.5rem; border-radius:2rem; border:1px solid var(--border2); background:var(--soft); font-size:0.95rem; margin-bottom:1.5rem; color:var(--text); }
+.search-box:focus { outline:none; border-color:var(--primary); }
+.form-row { margin-bottom:0.8rem; }
+.form-row label { display:block; font-size:0.8rem; color:var(--accent2); margin-bottom:0.3rem; }
+.form-row input,.form-row textarea,.form-row select { width:100%; padding:0.7rem 1rem; border-radius:0.7rem; border:1px solid var(--border2); background:var(--soft); font-family:inherit; font-size:0.9rem; color:var(--text); }
+.form-row input:focus,.form-row textarea:focus,.form-row select:focus { outline:none; border-color:var(--primary); }
+.result-box { margin-top:1rem; padding:1rem; background:var(--soft); border:1px solid var(--border2); border-radius:0.8rem; font-family:monospace; font-size:0.9rem; color:var(--accent); word-break:break-all; min-height:2.5rem; }
+.tabs { display:flex; flex-wrap:wrap; gap:0.4rem; margin-bottom:1.5rem; border-bottom:2px solid var(--border); padding-bottom:0.5rem; }
+.tab { padding:0.5rem 1rem; border-radius:2rem; background:transparent; border:1px solid transparent; cursor:pointer; font-size:0.8rem; color:var(--text2); font-family:inherit; font-weight:500; transition:all .2s; }
+.tab:hover { background:var(--soft); color:var(--accent2); }
+.tab.active { background:var(--primary); color:#784a0e; border-color:var(--primary-h); }
+.panel { display:none; }
+.panel.active { display:block; }
+.setting-row { display:flex; justify-content:space-between; align-items:center; padding:0.6rem 0; border-bottom:1px dashed var(--border2); }
+.topbar { display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; flex-wrap:wrap; gap:1rem; }
+@media (max-width:680px) { body { padding:1rem; } .tools-grid { grid-template-columns:1fr; gap:1rem; } .section-title { font-size:1.3rem; } .tabs { overflow-x:auto; flex-wrap:nowrap; } }
+</style>
+
+</head>
+<body>
+<div class="topbar">
+  <a href="index.html" class="btn btn-gray"><i class="fas fa-home"></i> خانه</a>
+  <button class="btn btn-gray" onclick="toggleDark()"><i class="fas fa-moon"></i> تم</button>
+</div>
+<main><h1 style="margin-bottom:1.5rem">🔢 ریاضی جامع</h1><div class="tabs"><button class="tab active" data-tab="calc"><i class="fas fa-calculator"></i> ماشین حساب</button><button class="tab" data-tab="area"><i class="fas fa-square"></i> مساحت</button><button class="tab" data-tab="perimeter"><i class="fas fa-ruler-combined"></i> محیط</button><button class="tab" data-tab="volume"><i class="fas fa-cube"></i> حجم</button><button class="tab" data-tab="circle"><i class="fas fa-circle"></i> دایره</button><button class="tab" data-tab="percent"><i class="fas fa-percent"></i> درصد</button><button class="tab" data-tab="average"><i class="fas fa-chart-simple"></i> میانگین</button><button class="tab" data-tab="bmi"><i class="fas fa-weight-scale"></i> BMI</button><button class="tab" data-tab="units"><i class="fas fa-arrows-left-right"></i> تبدیل واحد</button><button class="tab" data-tab="random"><i class="fas fa-dice"></i> تصادفی</button></div>
+<div class="card" style="padding:1.8rem">
+<div class="panel active" data-panel="calc">
+  <div style="display:flex;gap:0.5rem;flex-wrap:wrap;align-items:center">
+    <input id="c_a" type="number" step="any" style="flex:1;min-width:80px;padding:0.7rem;border-radius:0.7rem;border:1px solid #ffe2b5;direction:ltr" placeholder="عدد ۱">
+    <select id="c_op" style="padding:0.7rem;border-radius:0.7rem;border:1px solid #ffe2b5;direction:ltr"><option>+</option><option>-</option><option>*</option><option>/</option><option>^</option><option>%</option></select>
+    <input id="c_b" type="number" step="any" style="flex:1;min-width:80px;padding:0.7rem;border-radius:0.7rem;border:1px solid #ffe2b5;direction:ltr" placeholder="عدد ۲">
+    <button class="btn btn-primary" onclick="mCalc()">=</button>
+  </div>
+  <div class="result-box" id="c_out" style="direction:ltr;text-align:left;font-size:1.3rem"></div>
+</div>
+
+<div class="panel" data-panel="area">
+  <div class="form-row"><label>شکل:</label><select id="a_shape" onchange="mArea()">
+    <option value="rect">مستطیل (طول × عرض)</option><option value="square">مربع (ضلع²)</option>
+    <option value="circle">دایره (πr²)</option><option value="triangle">مثلث (½ × قاعده × ارتفاع)</option>
+    <option value="trapezoid">ذوزنقه (½ × (قاعده۱+قاعده۲) × ارتفاع)</option>
+  </select></div>
+  <div class="form-row"><label>مقدار ۱:</label><input id="a_x" type="number" step="any" value="5" oninput="mArea()"></div>
+  <div class="form-row"><label>مقدار ۲:</label><input id="a_y" type="number" step="any" value="3" oninput="mArea()"></div>
+  <div class="result-box" id="a_out"></div>
+</div>
+
+<div class="panel" data-panel="perimeter">
+  <div class="form-row"><label>شکل:</label><select id="p_shape" onchange="mPerim()">
+    <option value="rect">مستطیل (۲×(طول+عرض))</option><option value="square">مربع (۴×ضلع)</option>
+    <option value="circle">دایره (۲πr)</option><option value="triangle">مثلث (مجموع ۳ ضلع)</option>
+  </select></div>
+  <div class="form-row"><label>مقدار ۱:</label><input id="p_x" type="number" step="any" value="5" oninput="mPerim()"></div>
+  <div class="form-row"><label>مقدار ۲:</label><input id="p_y" type="number" step="any" value="3" oninput="mPerim()"></div>
+  <div class="form-row"><label>مقدار ۳ (مثلث):</label><input id="p_z" type="number" step="any" value="4" oninput="mPerim()"></div>
+  <div class="result-box" id="p_out"></div>
+</div>
+
+<div class="panel" data-panel="volume">
+  <div class="form-row"><label>شکل:</label><select id="v_shape" onchange="mVol()">
+    <option value="cube">مکعب (a³)</option><option value="rect">مکعب مستطیل (a×b×c)</option>
+    <option value="sphere">کره (4/3 πr³)</option><option value="cylinder">استوانه (πr²h)</option>
+    <option value="cone">مخروط (1/3 πr²h)</option>
+  </select></div>
+  <div class="form-row"><label>مقدار ۱:</label><input id="v_x" type="number" step="any" value="3" oninput="mVol()"></div>
+  <div class="form-row"><label>مقدار ۲:</label><input id="v_y" type="number" step="any" value="4" oninput="mVol()"></div>
+  <div class="form-row"><label>مقدار ۳:</label><input id="v_z" type="number" step="any" value="5" oninput="mVol()"></div>
+  <div class="result-box" id="v_out"></div>
+</div>
+
+<div class="panel" data-panel="circle">
+  <div class="form-row"><label>شعاع (r):</label><input id="ci_r" type="number" step="any" value="5" oninput="mCircle()"></div>
+  <div class="result-box" id="ci_out" style="white-space:pre-wrap"></div>
+</div>
+
+<div class="panel" data-panel="percent">
+  <div class="form-row"><label>محاسبه:</label><select id="pc_mode" onchange="mPct()">
+    <option value="pOf">X% از Y</option><option value="xIs">X چند درصد Y است</option>
+    <option value="chg">درصد تغییر از X به Y</option><option value="inc">X با افزایش Y%</option>
+  </select></div>
+  <div class="form-row"><label>X:</label><input id="pc_x" type="number" step="any" value="20" oninput="mPct()"></div>
+  <div class="form-row"><label>Y:</label><input id="pc_y" type="number" step="any" value="500" oninput="mPct()"></div>
+  <div class="result-box" id="pc_out"></div>
+</div>
+
+<div class="panel" data-panel="average">
+  <div class="form-row"><label>اعداد (با کاما یا فاصله جدا کن):</label><textarea id="av_t" rows="3" style="direction:ltr" oninput="mAvg()">10, 20, 30, 40</textarea></div>
+  <div class="result-box" id="av_out" style="white-space:pre-wrap"></div>
+</div>
+
+<div class="panel" data-panel="bmi">
+  <div class="form-row"><label>وزن (kg):</label><input id="bmi_w" type="number" step="any" value="70" oninput="mBmi()"></div>
+  <div class="form-row"><label>قد (cm):</label><input id="bmi_h" type="number" step="any" value="175" oninput="mBmi()"></div>
+  <div class="result-box" id="bmi_out"></div>
+</div>
+
+<div class="panel" data-panel="units">
+  <div class="form-row"><label>مقدار:</label><input id="u_v" type="number" step="any" value="1" oninput="mUnits()"></div>
+  <div class="form-row"><label>نوع:</label><select id="u_m" onchange="mUnits()">
+    <option value="km">کیلومتر→متر</option><option value="m">متر→سانتی‌متر</option>
+    <option value="kg">کیلوگرم→گرم</option><option value="c">سلسیوس→فارنهایت</option>
+    <option value="f">فارنهایت→سلسیوس</option><option value="mb">مگابایت→کیلوبایت</option>
+    <option value="gb">گیگابایت→مگابایت</option>
+  </select></div>
+  <div class="result-box" id="u_out"></div>
+</div>
+
+<div class="panel" data-panel="random">
+  <div class="form-row"><label>از:</label><input id="r_a" type="number" value="1"></div>
+  <div class="form-row"><label>تا:</label><input id="r_b" type="number" value="100"></div>
+  <button class="btn btn-primary" onclick="mRand()">تولید</button>
+  <div class="result-box" id="r_out" style="font-size:1.5rem;text-align:center"></div>
+</div>
+</div>
+
+<script>
+document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => {
+  document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(x => x.classList.remove('active'));
+  t.classList.add('active');
+  document.querySelector('[data-panel="'+t.dataset.tab+'"]').classList.add('active');
+}));
+
+function mCalc(){
+  const a=parseFloat(document.getElementById('c_a').value), b=parseFloat(document.getElementById('c_b').value), op=document.getElementById('c_op').value;
+  let r='?';
+  if(!isNaN(a)&&!isNaN(b)){
+    if(op==='+')r=a+b; else if(op==='-')r=a-b; else if(op==='*')r=a*b; else if(op==='/')r=b===0?'÷0':a/b;
+    else if(op==='^')r=Math.pow(a,b); else if(op==='%')r=a%b;
+  }
+  document.getElementById('c_out').textContent=r;
+}
+
+function mArea(){
+  const s=document.getElementById('a_shape').value, x=parseFloat(document.getElementById('a_x').value)||0, y=parseFloat(document.getElementById('a_y').value)||0;
+  const PI=Math.PI; let r=0, name='';
+  if(s==='rect'){r=x*y;name='مستطیل';}
+  else if(s==='square'){r=x*x;name='مربع';}
+  else if(s==='circle'){r=PI*x*x;name='دایره';}
+  else if(s==='triangle'){r=0.5*x*y;name='مثلث';}
+  else if(s==='trapezoid'){r=0.5*(x+y)*y;name='ذوزنقه';}
+  document.getElementById('a_out').textContent='مساحت '+name+' = '+r.toFixed(4);
+}
+
+function mPerim(){
+  const s=document.getElementById('p_shape').value, x=parseFloat(document.getElementById('p_x').value)||0, y=parseFloat(document.getElementById('p_y').value)||0, z=parseFloat(document.getElementById('p_z').value)||0;
+  let r=0, name='';
+  if(s==='rect'){r=2*(x+y);name='مستطیل';}
+  else if(s==='square'){r=4*x;name='مربع';}
+  else if(s==='circle'){r=2*Math.PI*x;name='دایره';}
+  else if(s==='triangle'){r=x+y+z;name='مثلث';}
+  document.getElementById('p_out').textContent='محیط '+name+' = '+r.toFixed(4);
+}
+
+function mVol(){
+  const s=document.getElementById('v_shape').value, x=parseFloat(document.getElementById('v_x').value)||0, y=parseFloat(document.getElementById('v_y').value)||0, z=parseFloat(document.getElementById('v_z').value)||0;
+  const PI=Math.PI; let r=0, name='';
+  if(s==='cube'){r=Math.pow(x,3);name='مکعب';}
+  else if(s==='rect'){r=x*y*z;name='مکعب مستطیل';}
+  else if(s==='sphere'){r=(4/3)*PI*Math.pow(x,3);name='کره';}
+  else if(s==='cylinder'){r=PI*x*x*y;name='استوانه';}
+  else if(s==='cone'){r=(1/3)*PI*x*x*y;name='مخروط';}
+  document.getElementById('v_out').textContent='حجم '+name+' = '+r.toFixed(4);
+}
+
+function mCircle(){
+  const r=parseFloat(document.getElementById('ci_r').value)||0, PI=Math.PI;
+  document.getElementById('ci_out').textContent='شعاع: '+r+'\nقطر: '+(2*r).toFixed(4)+'\nمحیط: '+(2*PI*r).toFixed(4)+'\nمساحت: '+(PI*r*r).toFixed(4)+'\nحجم کره: '+((4/3)*PI*r*r*r).toFixed(4);
+}
+
+function mPct(){
+  const m=document.getElementById('pc_mode').value, x=parseFloat(document.getElementById('pc_x').value)||0, y=parseFloat(document.getElementById('pc_y').value)||0;
+  let r='', name='';
+  if(m==='pOf'){r=(x*y/100).toFixed(4);name=x+'% از '+y+' = ';}
+  else if(m==='xIs'){r=(y===0?'?':(x/y*100).toFixed(4)+'%');name=x+' چند درصد '+y+' است = ';}
+  else if(m==='chg'){r=(x===0?'?':((y-x)/x*100).toFixed(4)+'%');name='درصد تغییر از '+x+' به '+y+' = ';}
+  else if(m==='inc'){r=(x+x*y/100).toFixed(4);name=x+' با '+y+'% افزایش = ';}
+  document.getElementById('pc_out').textContent=name+r;
+}
+
+function mAvg(){
+  const nums=document.getElementById('av_t').value.split(/[\s,؛;]+/).map(x=>parseFloat(x)).filter(x=>!isNaN(x));
+  if(!nums.length){document.getElementById('av_out').textContent='عدد معتبر نیست';return;}
+  const sum=nums.reduce((a,b)=>a+b,0);
+  document.getElementById('av_out').textContent='تعداد: '+nums.length+'\nمجموع: '+sum+'\nمیانگین: '+(sum/nums.length).toFixed(4)+'\nکمینه: '+Math.min(...nums)+'\nبیشینه: '+Math.max(...nums);
+}
+
+function mBmi(){
+  const w=parseFloat(document.getElementById('bmi_w').value)||0, h=(parseFloat(document.getElementById('bmi_h').value)||0)/100;
+  if(h===0){document.getElementById('bmi_out').textContent='قد معتبر نیست';return;}
+  const v=w/(h*h);
+  let l=''; if(v<18.5)l='کم‌وزن'; else if(v<25)l='نرمال'; else if(v<30)l='اضافه وزن'; else l='چاق';
+  document.getElementById('bmi_out').textContent='BMI = '+v.toFixed(1)+' ('+l+')';
+}
+
+function mUnits(){
+  const v=parseFloat(document.getElementById('u_v').value)||0, m=document.getElementById('u_m').value;
+  const map={km:()=>v*1000+' متر',m:()=>v*100+' سانتی‌متر',kg:()=>v*1000+' گرم',c:()=>(v*9/5+32).toFixed(2)+' فارنهایت',f:()=>((v-32)*5/9).toFixed(2)+' سلسیوس',mb:()=>v*1024+' کیلوبایت',gb:()=>v*1024+' مگابایت'};
+  document.getElementById('u_out').textContent=map[m]();
+}
+
+function mRand(){
+  const a=parseInt(document.getElementById('r_a').value)||0, b=parseInt(document.getElementById('r_b').value)||0;
+  const lo=Math.min(a,b), hi=Math.max(a,b);
+  document.getElementById('r_out').textContent=Math.floor(Math.random()*(hi-lo+1))+lo;
+}
+
+mArea(); mPerim(); mVol(); mCircle(); mPct(); mAvg(); mBmi(); mUnits();
+</script></main>
+<footer>RAM HUB · ver 26.4 · تمام حقوق محفوظ است</footer>
+<script>
+function toggleDark() {
+  document.body.classList.toggle('dark');
+  localStorage.setItem('dark', document.body.classList.contains('dark') ? '1' : '0');
+}
+if (localStorage.getItem('dark') === '1') document.body.classList.add('dark');
+</script>
+</body></html>

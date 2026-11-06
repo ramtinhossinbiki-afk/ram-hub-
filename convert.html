@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تبدیل داده | RAM HUB</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+:root { --bg:#fffef7; --card:#ffffff; --border:#fff0d6; --border2:#ffe2b5; --primary:#f9e0a0; --primary-h:#f7d97e; --text:#2d3e50; --text2:#5a6e7c; --accent:#c8821f; --accent2:#a0763a; --soft:#fefaf2; }
+body.dark { --bg:#1a1d24; --card:#252932; --border:#333846; --border2:#404657; --primary:#f9e0a0; --primary-h:#f7d97e; --text:#e8ecf1; --text2:#9ca6b5; --accent:#f9e0a0; --accent2:#d4b57a; --soft:#2a2f3a; }
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Inter','Segoe UI',system-ui,'Vazir',sans-serif; }
+body { background:var(--bg); padding:2rem 1.5rem; color:var(--text); transition:background .3s,color .3s; }
+.card { background:var(--card); border-radius:1.75rem; box-shadow:0 8px 20px rgba(0,0,0,0.02),0 2px 6px rgba(255,200,100,0.1); border:1px solid var(--border); overflow:hidden; }
+.btn { background:var(--soft); border:1px solid var(--border2); padding:0.6rem 1.2rem; border-radius:2rem; font-weight:500; font-size:0.85rem; cursor:pointer; color:var(--accent2); transition:all 0.2s ease; text-decoration:none; display:inline-flex; align-items:center; gap:0.5rem; justify-content:center; font-family:inherit; }
+.btn:hover { background:var(--border); }
+.btn-primary { background:var(--primary); border:none; color:#784a0e; box-shadow:0 2px 4px rgba(249,200,100,0.2); }
+.btn-primary:hover { background:var(--primary-h); transform:translateY(-2px); }
+.btn-gray { background:#f5f0e8; }
+.section { margin-bottom:2.5rem; }
+.section-title { font-size:1.5rem; font-weight:700; color:var(--accent); margin-bottom:1rem; padding-right:0.5rem; border-right:4px solid var(--primary); display:flex; align-items:center; gap:0.5rem; }
+.tools-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:1.5rem; }
+.tool-card { background:var(--card); border-radius:1.2rem; border:1px solid var(--border); overflow:hidden; transition:all 0.3s ease; box-shadow:0 4px 12px rgba(0,0,0,0.02); display:flex; flex-direction:column; text-decoration:none; color:inherit; }
+.tool-card:hover { transform:translateY(-5px); box-shadow:0 12px 24px rgba(0,0,0,0.05); border-color:var(--border2); }
+.card-icon { width:100%; height:110px; display:flex; align-items:center; justify-content:center; font-size:2.8rem; color:#e5a12e; background:var(--soft); border-bottom:2px solid var(--border); }
+.card-content { padding:1.2rem; display:flex; flex-direction:column; flex-grow:1; }
+.card-title { font-size:1.15rem; font-weight:700; color:var(--accent); margin-bottom:0.4rem; }
+.card-desc { color:var(--text2); font-size:0.85rem; line-height:1.6; margin-bottom:1rem; flex-grow:1; }
+h1 { font-weight:700; color:var(--accent); letter-spacing:-0.3px; }
+header.top { text-align:center; margin-bottom:2rem; }
+header.top a.home { color:var(--accent); text-decoration:none; }
+.hero p { color:var(--accent2); max-width:650px; margin:0.5rem auto 0; font-size:0.9rem; }
+footer { text-align:center; margin-top:2rem; font-size:0.7rem; color:#bfae95; border-top:1px solid var(--border); padding-top:1rem; }
+.search-box { width:100%; padding:0.9rem 1.5rem; border-radius:2rem; border:1px solid var(--border2); background:var(--soft); font-size:0.95rem; margin-bottom:1.5rem; color:var(--text); }
+.search-box:focus { outline:none; border-color:var(--primary); }
+.form-row { margin-bottom:0.8rem; }
+.form-row label { display:block; font-size:0.8rem; color:var(--accent2); margin-bottom:0.3rem; }
+.form-row input,.form-row textarea,.form-row select { width:100%; padding:0.7rem 1rem; border-radius:0.7rem; border:1px solid var(--border2); background:var(--soft); font-family:inherit; font-size:0.9rem; color:var(--text); }
+.form-row input:focus,.form-row textarea:focus,.form-row select:focus { outline:none; border-color:var(--primary); }
+.result-box { margin-top:1rem; padding:1rem; background:var(--soft); border:1px solid var(--border2); border-radius:0.8rem; font-family:monospace; font-size:0.9rem; color:var(--accent); word-break:break-all; min-height:2.5rem; }
+.tabs { display:flex; flex-wrap:wrap; gap:0.4rem; margin-bottom:1.5rem; border-bottom:2px solid var(--border); padding-bottom:0.5rem; }
+.tab { padding:0.5rem 1rem; border-radius:2rem; background:transparent; border:1px solid transparent; cursor:pointer; font-size:0.8rem; color:var(--text2); font-family:inherit; font-weight:500; transition:all .2s; }
+.tab:hover { background:var(--soft); color:var(--accent2); }
+.tab.active { background:var(--primary); color:#784a0e; border-color:var(--primary-h); }
+.panel { display:none; }
+.panel.active { display:block; }
+.setting-row { display:flex; justify-content:space-between; align-items:center; padding:0.6rem 0; border-bottom:1px dashed var(--border2); }
+.topbar { display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; flex-wrap:wrap; gap:1rem; }
+@media (max-width:680px) { body { padding:1rem; } .tools-grid { grid-template-columns:1fr; gap:1rem; } .section-title { font-size:1.3rem; } .tabs { overflow-x:auto; flex-wrap:nowrap; } }
+</style>
+
+</head>
+<body>
+<div class="topbar">
+  <a href="index.html" class="btn btn-gray"><i class="fas fa-home"></i> خانه</a>
+  <button class="btn btn-gray" onclick="toggleDark()"><i class="fas fa-moon"></i> تم</button>
+</div>
+<main><h1 style="margin-bottom:1.5rem">🔄 تبدیل داده</h1><div class="tabs"><button class="tab active" data-tab="jsoncsv"><i class="fas fa-right-left"></i> JSON↔CSV</button><button class="tab" data-tab="json2"><i class="fas fa-indent"></i> JSON فرمت</button><button class="tab" data-tab="xml"><i class="fas fa-code"></i> XML→JSON</button><button class="tab" data-tab="yaml"><i class="fas fa-code"></i> YAML→JSON</button><button class="tab" data-tab="color"><i class="fas fa-palette"></i> رنگ</button><button class="tab" data-tab="binary"><i class="fas fa-0"></i> باینری</button><button class="tab" data-tab="hex"><i class="fas fa-hashtag"></i> هگز</button><button class="tab" data-tab="temp"><i class="fas fa-temperature-half"></i> دما</button><button class="tab" data-tab="num"><i class="fas fa-list-ol"></i> پایه اعداد</button><button class="tab" data-tab="date"><i class="fas fa-calendar"></i> تاریخ</button></div>
+<div class="card" style="padding:1.8rem">
+<div class="panel active" data-panel="jsoncsv">
+  <div class="form-row"><select id="cv_mode"><option value="j2c">JSON → CSV</option><option value="c2j">CSV → JSON</option></select></div>
+  <div class="form-row"><textarea id="cv_in" rows="6" style="direction:ltr"></textarea></div>
+  <button class="btn btn-primary" onclick="cvJsonCsv()">تبدیل</button>
+  <div class="result-box" id="cv_out" style="white-space:pre-wrap;min-height:80px"></div>
+</div>
+<div class="panel" data-panel="json2">
+  <div class="form-row"><textarea id="cv_j2_in" rows="5" style="direction:ltr" placeholder='{"a":1,"b":[1,2]}'></textarea></div>
+  <button class="btn btn-primary" onclick="cvJsonFmt(2)">Pretty (2)</button>
+  <button class="btn btn-primary" onclick="cvJsonFmt(4)">Pretty (4)</button>
+  <button class="btn btn-primary" onclick="cvJsonFmt(0)">Minify</button>
+  <div class="result-box" id="cv_j2_out" style="white-space:pre-wrap;min-height:80px"></div>
+</div>
+<div class="panel" data-panel="xml">
+  <div class="form-row"><textarea id="cv_xml_in" rows="5" style="direction:ltr" placeholder="<root><a>1</a></root>"></textarea></div>
+  <button class="btn btn-primary" onclick="cvXml()">تبدیل</button>
+  <div class="result-box" id="cv_xml_out" style="white-space:pre-wrap;min-height:80px"></div>
+</div>
+<div class="panel" data-panel="yaml">
+  <div class="form-row"><textarea id="cv_yaml_in" rows="5" style="direction:ltr" placeholder="key: value"></textarea></div>
+  <button class="btn btn-primary" onclick="cvYaml()">YAML ساده → JSON</button>
+  <div class="result-box" id="cv_yaml_out" style="white-space:pre-wrap;min-height:80px"></div>
+</div>
+<div class="panel" data-panel="color">
+  <div class="form-row"><select id="cv_color_mode"><option value="h2r">HEX→RGB</option><option value="r2h">RGB→HEX</option><option value="h2h">HEX→HSL</option></select></div>
+  <div class="form-row"><input id="cv_color_in" type="text" style="direction:ltr" placeholder="#4a7cff یا 74,124,255"></div>
+  <button class="btn btn-primary" onclick="cvColor()">تبدیل</button>
+  <div class="result-box" id="cv_color_out"></div>
+  <div id="cv_color_preview" style="height:60px;border-radius:0.8rem;margin-top:0.8rem;border:1px solid #ffe2b5"></div>
+</div>
+<div class="panel" data-panel="binary">
+  <div class="form-row"><select id="cv_bin_mode"><option value="t2b">متن→باینری</option><option value="b2t">باینری→متن</option></select></div>
+  <div class="form-row"><textarea id="cv_bin_in" rows="4" style="direction:ltr"></textarea></div>
+  <button class="btn btn-primary" onclick="cvBin()">تبدیل</button>
+  <div class="result-box" id="cv_bin_out" style="white-space:pre-wrap;min-height:60px"></div>
+</div>
+<div class="panel" data-panel="hex">
+  <div class="form-row"><select id="cv_hex_mode"><option value="t2h">متن→هگز</option><option value="h2t">هگز→متن</option><option value="n2h">عدد→هگز</option><option value="h2n">هگز→عدد</option></select></div>
+  <div class="form-row"><textarea id="cv_hex_in" rows="3" style="direction:ltr"></textarea></div>
+  <button class="btn btn-primary" onclick="cvHex()">تبدیل</button>
+  <div class="result-box" id="cv_hex_out" style="white-space:pre-wrap;min-height:50px"></div>
+</div>
+<div class="panel" data-panel="temp">
+  <div class="form-row"><label>مقدار:</label><input id="cv_t_val" type="number" step="any" value="25" oninput="cvTemp()"></div>
+  <div class="form-row"><label>از:</label><select id="cv_t_from" onchange="cvTemp()"><option value="c">سلسیوس</option><option value="f">فارنهایت</option><option value="k">کلوین</option></select></div>
+  <div class="result-box" id="cv_t_out" style="white-space:pre-wrap"></div>
+</div>
+<div class="panel" data-panel="num">
+  <div class="form-row"><label>عدد:</label><input id="cv_n_in" type="text" value="255" oninput="cvNum()"></div>
+  <div class="form-row"><label>از پایه:</label><select id="cv_n_base" onchange="cvNum()"><option value="10">۱۰ (اعشاری)</option><option value="2">۲ (باینری)</option><option value="8">۸ (اکتال)</option><option value="16">۱۶ (هگز)</option></select></div>
+  <div class="result-box" id="cv_n_out" style="white-space:pre-wrap"></div>
+</div>
+<div class="panel" data-panel="date">
+  <div class="form-row"><label>تاریخ میلادی:</label><input id="cv_d_in" type="date" onchange="cvDate()"></div>
+  <div class="result-box" id="cv_d_out" style="white-space:pre-wrap"></div>
+</div>
+</div>
+
+<script>
+document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => {
+  document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(x => x.classList.remove('active'));
+  t.classList.add('active');
+  document.querySelector('[data-panel="'+t.dataset.tab+'"]').classList.add('active');
+}));
+function cvJsonCsv(){
+  const m=document.getElementById('cv_mode').value, t=document.getElementById('cv_in').value, o=document.getElementById('cv_out');
+  try{
+    if(m==='j2c'){
+      let d=JSON.parse(t); if(!Array.isArray(d))d=[d];
+      const h=Object.keys(d[0]);
+      o.textContent=h.join(',')+'\n'+d.map(r=>h.map(k=>r[k]||'').join(',')).join('\n');
+    } else {
+      const lines=t.trim().split('\n'), h=lines[0].split(',');
+      const rows=lines.slice(1).map(l=>{const v=l.split(',');const obj={};h.forEach((k,i)=>obj[k]=v[i]||'');return obj;});
+      o.textContent=JSON.stringify(rows,null,2);
+    }
+  }catch(e){o.textContent='خطا: '+e.message;}
+}
+function cvJsonFmt(sp){
+  const t=document.getElementById('cv_j2_in').value, o=document.getElementById('cv_j2_out');
+  try{o.textContent=JSON.stringify(JSON.parse(t),null,sp||undefined);}catch(e){o.textContent='خطا: '+e.message;}
+}
+function cvXml(){
+  const t=document.getElementById('cv_xml_in').value, o=document.getElementById('cv_xml_out');
+  try{
+    const doc=new DOMParser().parseFromString(t,'application/xml');
+    if(doc.querySelector('parsererror'))throw new Error('XML نامعتبر');
+    function walk(n){
+      if(n.nodeType!==1)return null;
+      const obj={}; const kids=[...n.children];
+      if(!kids.length)return n.textContent;
+      for(const k of kids){const v=walk(k); if(obj[k.tagName]){if(!Array.isArray(obj[k.tagName]))obj[k.tagName]=[obj[k.tagName]];obj[k.tagName].push(v);}else obj[k.tagName]=v;}
+      return obj;
+    }
+    o.textContent=JSON.stringify({[doc.documentElement.tagName]:walk(doc.documentElement)},null,2);
+  }catch(e){o.textContent='خطا: '+e.message;}
+}
+function cvYaml(){
+  const t=document.getElementById('cv_yaml_in').value, o=document.getElementById('cv_yaml_out');
+  try{
+    const lines=t.split('\n').filter(x=>x.trim()&&!x.trim().startsWith('#'));
+    const obj={};
+    for(const ln of lines){
+      const m=ln.match(/^\s*([^:]+):\s*(.*)$/);
+      if(m){let v=m[2].trim(); if(v==='true')v=true; else if(v==='false')v=false; else if(!isNaN(v)&&v!=='')v=parseFloat(v); obj[m[1].trim()]=v;}
+    }
+    o.textContent=JSON.stringify(obj,null,2);
+  }catch(e){o.textContent='خطا: '+e.message;}
+}
+function cvColor(){
+  const m=document.getElementById('cv_color_mode').value, t=document.getElementById('cv_color_in').value.trim(), o=document.getElementById('cv_color_out'), p=document.getElementById('cv_color_preview');
+  try{
+    if(m==='h2r'){
+      const h=t.replace('#',''); const r=parseInt(h.slice(0,2),16),g=parseInt(h.slice(2,4),16),b=parseInt(h.slice(4,6),16);
+      o.textContent='rgb('+r+', '+g+', '+b+')'; p.style.background='#'+h;
+    } else if(m==='r2h'){
+      const parts=t.replace('rgb(','').replace(')','').split(',').map(x=>parseInt(x.trim()));
+      const hex='#'+parts.map(x=>x.toString(16).padStart(2,'0')).join('');
+      o.textContent=hex; p.style.background=hex;
+    } else {
+      const h=t.replace('#',''); const r=parseInt(h.slice(0,2),16)/255,g=parseInt(h.slice(2,4),16)/255,b=parseInt(h.slice(4,6),16)/255;
+      const max=Math.max(r,g,b),min=Math.min(r,g,b); let hh=0,s=0,l=(max+min)/2;
+      if(max!==min){const d=max-min; s=l>0.5?d/(2-max-min):d/(max+min);
+        if(max===r)hh=((g-b)/d+(g<b?6:0))/6; else if(max===g)hh=((b-r)/d+2)/6; else hh=((r-g)/d+4)/6;}
+      o.textContent='hsl('+(hh*360).toFixed(0)+', '+(s*100).toFixed(0)+'%, '+(l*100).toFixed(0)+'%)'; p.style.background='#'+h;
+    }
+  }catch(e){o.textContent='خطا: '+e.message;}
+}
+function cvBin(){
+  const m=document.getElementById('cv_bin_mode').value, t=document.getElementById('cv_bin_in').value, o=document.getElementById('cv_bin_out');
+  try{
+    if(m==='t2b') o.textContent=[...t].map(c=>c.charCodeAt(0).toString(2).padStart(8,'0')).join(' ');
+    else o.textContent=t.trim().split(/\s+/).map(b=>String.fromCharCode(parseInt(b,2))).join('');
+  }catch(e){o.textContent='خطا: '+e.message;}
+}
+function cvHex(){
+  const m=document.getElementById('cv_hex_mode').value, t=document.getElementById('cv_hex_in').value, o=document.getElementById('cv_hex_out');
+  try{
+    if(m==='t2h') o.textContent=[...t].map(c=>c.charCodeAt(0).toString(16).padStart(2,'0')).join(' ');
+    else if(m==='h2t') o.textContent=t.trim().split(/\s+/).map(h=>String.fromCharCode(parseInt(h,16))).join('');
+    else if(m==='n2h') o.textContent=parseInt(t).toString(16);
+    else o.textContent=parseInt(t,16);
+  }catch(e){o.textContent='خطا: '+e.message;}
+}
+function cvTemp(){
+  const v=parseFloat(document.getElementById('cv_t_val').value)||0, f=document.getElementById('cv_t_from').value, o=document.getElementById('cv_t_out');
+  let c,fa,k;
+  if(f==='c'){c=v;fa=v*9/5+32;k=v+273.15;}
+  else if(f==='f'){c=(v-32)*5/9;fa=v;k=c+273.15;}
+  else {c=v-273.15;fa=c*9/5+32;k=v;}
+  o.textContent='سلسیوس: '+c.toFixed(2)+'\nفارنهایت: '+fa.toFixed(2)+'\nکلوین: '+k.toFixed(2);
+}
+function cvNum(){
+  const t=document.getElementById('cv_n_in').value.trim(), b=parseInt(document.getElementById('cv_n_base').value), o=document.getElementById('cv_n_out');
+  try{
+    const n=parseInt(t,b);
+    if(isNaN(n))throw new Error('عدد نامعتبر');
+    o.textContent='۱۰: '+n+'\n۲: '+n.toString(2)+'\n۸: '+n.toString(8)+'\n۱۶: '+n.toString(16).toUpperCase();
+  }catch(e){o.textContent='خطا: '+e.message;}
+}
+function cvDate(){
+  const t=document.getElementById('cv_d_in').value, o=document.getElementById('cv_d_out');
+  if(!t){o.textContent='تاریخ انتخاب کن';return;}
+  const d=new Date(t);
+  o.textContent='شمسی: '+d.toLocaleDateString('fa-IR',{year:'numeric',month:'long',day:'numeric',weekday:'long'});
+}
+cvTemp(); cvNum();
+</script></main>
+<footer>RAM HUB · ver 26.4 · تمام حقوق محفوظ است</footer>
+<script>
+function toggleDark() {
+  document.body.classList.toggle('dark');
+  localStorage.setItem('dark', document.body.classList.contains('dark') ? '1' : '0');
+}
+if (localStorage.getItem('dark') === '1') document.body.classList.add('dark');
+</script>
+</body></html>

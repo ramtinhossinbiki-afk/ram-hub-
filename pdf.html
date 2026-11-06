@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PDF جامع | RAM HUB</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+:root { --bg:#fffef7; --card:#ffffff; --border:#fff0d6; --border2:#ffe2b5; --primary:#f9e0a0; --primary-h:#f7d97e; --text:#2d3e50; --text2:#5a6e7c; --accent:#c8821f; --accent2:#a0763a; --soft:#fefaf2; }
+body.dark { --bg:#1a1d24; --card:#252932; --border:#333846; --border2:#404657; --primary:#f9e0a0; --primary-h:#f7d97e; --text:#e8ecf1; --text2:#9ca6b5; --accent:#f9e0a0; --accent2:#d4b57a; --soft:#2a2f3a; }
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Inter','Segoe UI',system-ui,'Vazir',sans-serif; }
+body { background:var(--bg); padding:2rem 1.5rem; color:var(--text); transition:background .3s,color .3s; }
+.card { background:var(--card); border-radius:1.75rem; box-shadow:0 8px 20px rgba(0,0,0,0.02),0 2px 6px rgba(255,200,100,0.1); border:1px solid var(--border); overflow:hidden; }
+.btn { background:var(--soft); border:1px solid var(--border2); padding:0.6rem 1.2rem; border-radius:2rem; font-weight:500; font-size:0.85rem; cursor:pointer; color:var(--accent2); transition:all 0.2s ease; text-decoration:none; display:inline-flex; align-items:center; gap:0.5rem; justify-content:center; font-family:inherit; }
+.btn:hover { background:var(--border); }
+.btn-primary { background:var(--primary); border:none; color:#784a0e; box-shadow:0 2px 4px rgba(249,200,100,0.2); }
+.btn-primary:hover { background:var(--primary-h); transform:translateY(-2px); }
+.btn-gray { background:#f5f0e8; }
+.section { margin-bottom:2.5rem; }
+.section-title { font-size:1.5rem; font-weight:700; color:var(--accent); margin-bottom:1rem; padding-right:0.5rem; border-right:4px solid var(--primary); display:flex; align-items:center; gap:0.5rem; }
+.tools-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:1.5rem; }
+.tool-card { background:var(--card); border-radius:1.2rem; border:1px solid var(--border); overflow:hidden; transition:all 0.3s ease; box-shadow:0 4px 12px rgba(0,0,0,0.02); display:flex; flex-direction:column; text-decoration:none; color:inherit; }
+.tool-card:hover { transform:translateY(-5px); box-shadow:0 12px 24px rgba(0,0,0,0.05); border-color:var(--border2); }
+.card-icon { width:100%; height:110px; display:flex; align-items:center; justify-content:center; font-size:2.8rem; color:#e5a12e; background:var(--soft); border-bottom:2px solid var(--border); }
+.card-content { padding:1.2rem; display:flex; flex-direction:column; flex-grow:1; }
+.card-title { font-size:1.15rem; font-weight:700; color:var(--accent); margin-bottom:0.4rem; }
+.card-desc { color:var(--text2); font-size:0.85rem; line-height:1.6; margin-bottom:1rem; flex-grow:1; }
+h1 { font-weight:700; color:var(--accent); letter-spacing:-0.3px; }
+header.top { text-align:center; margin-bottom:2rem; }
+header.top a.home { color:var(--accent); text-decoration:none; }
+.hero p { color:var(--accent2); max-width:650px; margin:0.5rem auto 0; font-size:0.9rem; }
+footer { text-align:center; margin-top:2rem; font-size:0.7rem; color:#bfae95; border-top:1px solid var(--border); padding-top:1rem; }
+.search-box { width:100%; padding:0.9rem 1.5rem; border-radius:2rem; border:1px solid var(--border2); background:var(--soft); font-size:0.95rem; margin-bottom:1.5rem; color:var(--text); }
+.search-box:focus { outline:none; border-color:var(--primary); }
+.form-row { margin-bottom:0.8rem; }
+.form-row label { display:block; font-size:0.8rem; color:var(--accent2); margin-bottom:0.3rem; }
+.form-row input,.form-row textarea,.form-row select { width:100%; padding:0.7rem 1rem; border-radius:0.7rem; border:1px solid var(--border2); background:var(--soft); font-family:inherit; font-size:0.9rem; color:var(--text); }
+.form-row input:focus,.form-row textarea:focus,.form-row select:focus { outline:none; border-color:var(--primary); }
+.result-box { margin-top:1rem; padding:1rem; background:var(--soft); border:1px solid var(--border2); border-radius:0.8rem; font-family:monospace; font-size:0.9rem; color:var(--accent); word-break:break-all; min-height:2.5rem; }
+.tabs { display:flex; flex-wrap:wrap; gap:0.4rem; margin-bottom:1.5rem; border-bottom:2px solid var(--border); padding-bottom:0.5rem; }
+.tab { padding:0.5rem 1rem; border-radius:2rem; background:transparent; border:1px solid transparent; cursor:pointer; font-size:0.8rem; color:var(--text2); font-family:inherit; font-weight:500; transition:all .2s; }
+.tab:hover { background:var(--soft); color:var(--accent2); }
+.tab.active { background:var(--primary); color:#784a0e; border-color:var(--primary-h); }
+.panel { display:none; }
+.panel.active { display:block; }
+.setting-row { display:flex; justify-content:space-between; align-items:center; padding:0.6rem 0; border-bottom:1px dashed var(--border2); }
+.topbar { display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; flex-wrap:wrap; gap:1rem; }
+@media (max-width:680px) { body { padding:1rem; } .tools-grid { grid-template-columns:1fr; gap:1rem; } .section-title { font-size:1.3rem; } .tabs { overflow-x:auto; flex-wrap:nowrap; } }
+</style>
+
+</head>
+<body>
+<div class="topbar">
+  <a href="index.html" class="btn btn-gray"><i class="fas fa-home"></i> خانه</a>
+  <button class="btn btn-gray" onclick="toggleDark()"><i class="fas fa-moon"></i> تم</button>
+</div>
+<main><h1 style="margin-bottom:1.5rem">📄 PDF جامع</h1><div class="tabs"><button class="tab active" data-tab="img2pdf"><i class="fas fa-image"></i> عکس به PDF</button><button class="tab" data-tab="info"><i class="fas fa-circle-info"></i> اطلاعات PDF</button><button class="tab" data-tab="pages"><i class="fas fa-file"></i> تعداد صفحات</button><button class="tab" data-tab="size"><i class="fas fa-weight-hanging"></i> حجم فایل</button><button class="tab" data-tab="preview"><i class="fas fa-eye"></i> پیش‌نمایش</button><button class="tab" data-tab="rotate"><i class="fas fa-rotate"></i> چرخش</button><button class="tab" data-tab="split"><i class="fas fa-scissors"></i> تقسیم</button><button class="tab" data-tab="merge"><i class="fas fa-object-group"></i> ادغام</button><button class="tab" data-tab="extract"><i class="fas fa-font"></i> استخراج متن</button><button class="tab" data-tab="guide"><i class="fas fa-question"></i> راهنما</button></div>
+<div class="card" style="padding:1.8rem">
+<div class="panel active" data-panel="img2pdf">
+  <div class="form-row"><label>عکس‌ها:</label><input id="p_imgs" type="file" accept="image/*" multiple></div>
+  <button class="btn btn-primary" onclick="pImg2Pdf()">ساخت PDF (نیاز به کتابخانه)</button>
+  <div class="result-box" id="p_img2pdf_out" style="min-height:40px"></div>
+</div>
+<div class="panel" data-panel="info">
+  <div class="form-row"><input id="p_info_file" type="file" accept=".pdf" onchange="pInfo()"></div>
+  <div class="result-box" id="p_info_out" style="white-space:pre-wrap;min-height:40px"></div>
+</div>
+<div class="panel" data-panel="pages">
+  <div class="form-row"><input id="p_pages_file" type="file" accept=".pdf" onchange="pPages()"></div>
+  <div class="result-box" id="p_pages_out" style="min-height:40px"></div>
+</div>
+<div class="panel" data-panel="size">
+  <div class="form-row"><input id="p_size_file" type="file" accept=".pdf" onchange="pSize()"></div>
+  <div class="result-box" id="p_size_out" style="min-height:40px"></div>
+</div>
+<div class="panel" data-panel="preview">
+  <div class="form-row"><input id="p_prev_file" type="file" accept=".pdf" onchange="pPreview()"></div>
+  <iframe id="p_prev" style="width:100%;height:500px;border:none;border-radius:0.8rem;margin-top:1rem;display:none"></iframe>
+</div>
+<div class="panel" data-panel="rotate">
+  <p>چرخش PDF نیاز به کتابخانه دارد. راهنمای استفاده: از ابزار "ادغام" یا "تقسیم" استفاده کنید.</p>
+</div>
+<div class="panel" data-panel="split">
+  <p>تقسیم PDF نیاز به کتابخانه pdf-lib دارد. در نسخه بعدی فعال می‌شود.</p>
+</div>
+<div class="panel" data-panel="merge">
+  <div class="form-row"><label>چند PDF:</label><input id="p_merge" type="file" accept=".pdf" multiple></div>
+  <button class="btn btn-primary" onclick="alert('نیاز به کتابخانه pdf-lib')">ادغام</button>
+</div>
+<div class="panel" data-panel="extract">
+  <p>استخراج متن نیاز به PDF.js دارد. در نسخه بعدی.</p>
+</div>
+<div class="panel" data-panel="guide">
+  <div class="result-box" style="white-space:pre-wrap;min-height:100px">📖 راهنمای PDF:
+• اطلاعات PDF: فقط با آپلود، نوع و حجم را نشان می‌دهد
+• تعداد صفحات: نیاز به pdf-lib
+• پیش‌نمایش: PDF را در مرورگر نشان می‌دهد
+• برای قابلیت‌های کامل، از نسخه بعدی RAM HUB استفاده کنید</div>
+</div>
+</div>
+
+<script>
+document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => {
+  document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(x => x.classList.remove('active'));
+  t.classList.add('active');
+  document.querySelector('[data-panel="'+t.dataset.tab+'"]').classList.add('active');
+}));
+function pInfo(){
+  const f=document.getElementById('p_info_file').files[0]; if(!f)return;
+  document.getElementById('p_info_out').textContent='نام: '+f.name+'\nنوع: '+f.type+'\nحجم: '+(f.size/1024).toFixed(1)+' KB';
+}
+function pPages(){
+  const f=document.getElementById('p_pages_file').files[0]; if(!f)return;
+  document.getElementById('p_pages_out').textContent='تعداد صفحات: نیاز به کتابخانه pdf-lib';
+}
+function pSize(){
+  const f=document.getElementById('p_size_file').files[0]; if(!f)return;
+  document.getElementById('p_size_out').textContent='حجم: '+(f.size/1024).toFixed(1)+' KB ('+f.size+' بایت)';
+}
+function pPreview(){
+  const f=document.getElementById('p_prev_file').files[0]; if(!f)return;
+  const url=URL.createObjectURL(f);
+  const ifr=document.getElementById('p_prev'); ifr.src=url; ifr.style.display='block';
+}
+function pImg2Pdf(){ alert('برای ساخت PDF از jsPDF استفاده می‌شود — در نسخه بعدی'); }
+</script></main>
+<footer>RAM HUB · ver 26.4 · تمام حقوق محفوظ است</footer>
+<script>
+function toggleDark() {
+  document.body.classList.toggle('dark');
+  localStorage.setItem('dark', document.body.classList.contains('dark') ? '1' : '0');
+}
+if (localStorage.getItem('dark') === '1') document.body.classList.add('dark');
+</script>
+</body></html>

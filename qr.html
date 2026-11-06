@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QR و بارکد | RAM HUB</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+:root { --bg:#fffef7; --card:#ffffff; --border:#fff0d6; --border2:#ffe2b5; --primary:#f9e0a0; --primary-h:#f7d97e; --text:#2d3e50; --text2:#5a6e7c; --accent:#c8821f; --accent2:#a0763a; --soft:#fefaf2; }
+body.dark { --bg:#1a1d24; --card:#252932; --border:#333846; --border2:#404657; --primary:#f9e0a0; --primary-h:#f7d97e; --text:#e8ecf1; --text2:#9ca6b5; --accent:#f9e0a0; --accent2:#d4b57a; --soft:#2a2f3a; }
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Inter','Segoe UI',system-ui,'Vazir',sans-serif; }
+body { background:var(--bg); padding:2rem 1.5rem; color:var(--text); transition:background .3s,color .3s; }
+.card { background:var(--card); border-radius:1.75rem; box-shadow:0 8px 20px rgba(0,0,0,0.02),0 2px 6px rgba(255,200,100,0.1); border:1px solid var(--border); overflow:hidden; }
+.btn { background:var(--soft); border:1px solid var(--border2); padding:0.6rem 1.2rem; border-radius:2rem; font-weight:500; font-size:0.85rem; cursor:pointer; color:var(--accent2); transition:all 0.2s ease; text-decoration:none; display:inline-flex; align-items:center; gap:0.5rem; justify-content:center; font-family:inherit; }
+.btn:hover { background:var(--border); }
+.btn-primary { background:var(--primary); border:none; color:#784a0e; box-shadow:0 2px 4px rgba(249,200,100,0.2); }
+.btn-primary:hover { background:var(--primary-h); transform:translateY(-2px); }
+.btn-gray { background:#f5f0e8; }
+.section { margin-bottom:2.5rem; }
+.section-title { font-size:1.5rem; font-weight:700; color:var(--accent); margin-bottom:1rem; padding-right:0.5rem; border-right:4px solid var(--primary); display:flex; align-items:center; gap:0.5rem; }
+.tools-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:1.5rem; }
+.tool-card { background:var(--card); border-radius:1.2rem; border:1px solid var(--border); overflow:hidden; transition:all 0.3s ease; box-shadow:0 4px 12px rgba(0,0,0,0.02); display:flex; flex-direction:column; text-decoration:none; color:inherit; }
+.tool-card:hover { transform:translateY(-5px); box-shadow:0 12px 24px rgba(0,0,0,0.05); border-color:var(--border2); }
+.card-icon { width:100%; height:110px; display:flex; align-items:center; justify-content:center; font-size:2.8rem; color:#e5a12e; background:var(--soft); border-bottom:2px solid var(--border); }
+.card-content { padding:1.2rem; display:flex; flex-direction:column; flex-grow:1; }
+.card-title { font-size:1.15rem; font-weight:700; color:var(--accent); margin-bottom:0.4rem; }
+.card-desc { color:var(--text2); font-size:0.85rem; line-height:1.6; margin-bottom:1rem; flex-grow:1; }
+h1 { font-weight:700; color:var(--accent); letter-spacing:-0.3px; }
+header.top { text-align:center; margin-bottom:2rem; }
+header.top a.home { color:var(--accent); text-decoration:none; }
+.hero p { color:var(--accent2); max-width:650px; margin:0.5rem auto 0; font-size:0.9rem; }
+footer { text-align:center; margin-top:2rem; font-size:0.7rem; color:#bfae95; border-top:1px solid var(--border); padding-top:1rem; }
+.search-box { width:100%; padding:0.9rem 1.5rem; border-radius:2rem; border:1px solid var(--border2); background:var(--soft); font-size:0.95rem; margin-bottom:1.5rem; color:var(--text); }
+.search-box:focus { outline:none; border-color:var(--primary); }
+.form-row { margin-bottom:0.8rem; }
+.form-row label { display:block; font-size:0.8rem; color:var(--accent2); margin-bottom:0.3rem; }
+.form-row input,.form-row textarea,.form-row select { width:100%; padding:0.7rem 1rem; border-radius:0.7rem; border:1px solid var(--border2); background:var(--soft); font-family:inherit; font-size:0.9rem; color:var(--text); }
+.form-row input:focus,.form-row textarea:focus,.form-row select:focus { outline:none; border-color:var(--primary); }
+.result-box { margin-top:1rem; padding:1rem; background:var(--soft); border:1px solid var(--border2); border-radius:0.8rem; font-family:monospace; font-size:0.9rem; color:var(--accent); word-break:break-all; min-height:2.5rem; }
+.tabs { display:flex; flex-wrap:wrap; gap:0.4rem; margin-bottom:1.5rem; border-bottom:2px solid var(--border); padding-bottom:0.5rem; }
+.tab { padding:0.5rem 1rem; border-radius:2rem; background:transparent; border:1px solid transparent; cursor:pointer; font-size:0.8rem; color:var(--text2); font-family:inherit; font-weight:500; transition:all .2s; }
+.tab:hover { background:var(--soft); color:var(--accent2); }
+.tab.active { background:var(--primary); color:#784a0e; border-color:var(--primary-h); }
+.panel { display:none; }
+.panel.active { display:block; }
+.setting-row { display:flex; justify-content:space-between; align-items:center; padding:0.6rem 0; border-bottom:1px dashed var(--border2); }
+.topbar { display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; flex-wrap:wrap; gap:1rem; }
+@media (max-width:680px) { body { padding:1rem; } .tools-grid { grid-template-columns:1fr; gap:1rem; } .section-title { font-size:1.3rem; } .tabs { overflow-x:auto; flex-wrap:nowrap; } }
+</style>
+
+</head>
+<body>
+<div class="topbar">
+  <a href="index.html" class="btn btn-gray"><i class="fas fa-home"></i> خانه</a>
+  <button class="btn btn-gray" onclick="toggleDark()"><i class="fas fa-moon"></i> تم</button>
+</div>
+<main><h1 style="margin-bottom:1.5rem">📱 QR و بارکد</h1><div class="tabs"><button class="tab active" data-tab="text"><i class="fas fa-font"></i> متن</button><button class="tab" data-tab="link"><i class="fas fa-link"></i> لینک</button><button class="tab" data-tab="wifi"><i class="fas fa-wifi"></i> وای‌فای</button><button class="tab" data-tab="vcard"><i class="fas fa-address-card"></i> کارت ویزیت</button><button class="tab" data-tab="phone"><i class="fas fa-phone"></i> تلفن</button><button class="tab" data-tab="email"><i class="fas fa-envelope"></i> ایمیل</button><button class="tab" data-tab="sms"><i class="fas fa-comment"></i> SMS</button><button class="tab" data-tab="geo"><i class="fas fa-map"></i> موقعیت</button><button class="tab" data-tab="event"><i class="fas fa-calendar"></i> رویداد</button><button class="tab" data-tab="settings"><i class="fas fa-cog"></i> تنظیمات</button></div>
+<div class="card" style="padding:1.8rem">
+<div class="panel active" data-panel="text">
+  <div class="form-row"><textarea id="q_text" rows="3" placeholder="متن..."></textarea></div>
+  <button class="btn btn-primary" onclick="qMake('text')">ساخت QR</button>
+</div>
+<div class="panel" data-panel="link">
+  <div class="form-row"><input id="q_link" type="url" style="direction:ltr" placeholder="https://example.com"></div>
+  <button class="btn btn-primary" onclick="qMake('link')">ساخت QR</button>
+</div>
+<div class="panel" data-panel="wifi">
+  <div class="form-row"><label>SSID:</label><input id="q_w_ssid" type="text"></div>
+  <div class="form-row"><label>رمز:</label><input id="q_w_pass" type="text" style="direction:ltr"></div>
+  <div class="form-row"><label>رمزنگاری:</label><select id="q_w_enc"><option>WPA</option><option>WEP</option><option>nopass</option></select></div>
+  <button class="btn btn-primary" onclick="qMake('wifi')">ساخت QR</button>
+</div>
+<div class="panel" data-panel="vcard">
+  <div class="form-row"><label>نام:</label><input id="q_v_name" type="text"></div>
+  <div class="form-row"><label>تلفن:</label><input id="q_v_tel" type="text" style="direction:ltr"></div>
+  <div class="form-row"><label>ایمیل:</label><input id="q_v_email" type="email" style="direction:ltr"></div>
+  <button class="btn btn-primary" onclick="qMake('vcard')">ساخت QR</button>
+</div>
+<div class="panel" data-panel="phone">
+  <div class="form-row"><input id="q_phone" type="tel" style="direction:ltr" placeholder="+989121234567"></div>
+  <button class="btn btn-primary" onclick="qMake('phone')">ساخت QR</button>
+</div>
+<div class="panel" data-panel="email">
+  <div class="form-row"><input id="q_email" type="email" style="direction:ltr"></div>
+  <button class="btn btn-primary" onclick="qMake('email')">ساخت QR</button>
+</div>
+<div class="panel" data-panel="sms">
+  <div class="form-row"><input id="q_sms_to" type="tel" style="direction:ltr" placeholder="+98..."></div>
+  <div class="form-row"><textarea id="q_sms_body" rows="2"></textarea></div>
+  <button class="btn btn-primary" onclick="qMake('sms')">ساخت QR</button>
+</div>
+<div class="panel" data-panel="geo">
+  <div class="form-row"><label>عرض جغرافیایی:</label><input id="q_geo_lat" type="number" step="any" style="direction:ltr" placeholder="35.6892"></div>
+  <div class="form-row"><label>طول جغرافیایی:</label><input id="q_geo_lng" type="number" step="any" style="direction:ltr" placeholder="51.3890"></div>
+  <button class="btn btn-primary" onclick="qMake('geo')">ساخت QR</button>
+</div>
+<div class="panel" data-panel="event">
+  <div class="form-row"><label>عنوان:</label><input id="q_ev_title" type="text"></div>
+  <div class="form-row"><label>شروع:</label><input id="q_ev_start" type="datetime-local"></div>
+  <div class="form-row"><label>پایان:</label><input id="q_ev_end" type="datetime-local"></div>
+  <button class="btn btn-primary" onclick="qMake('event')">ساخت QR</button>
+</div>
+<div class="panel" data-panel="settings">
+  <div class="form-row"><label>اندازه:</label><select id="q_size"><option>200</option><option selected>300</option><option>400</option><option>500</option></select></div>
+  <div class="form-row"><label>رنگ:</label><input id="q_color" type="color" value="#c8821f" style="height:40px"></div>
+</div>
+
+<div id="q_result" style="text-align:center;margin-top:1.5rem"></div>
+</div>
+
+<script>
+document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => {
+  document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(x => x.classList.remove('active'));
+  t.classList.add('active');
+  document.querySelector('[data-panel="'+t.dataset.tab+'"]').classList.add('active');
+}));
+function qMake(type){
+  let data='';
+  try{
+    if(type==='text') data=document.getElementById('q_text').value;
+    else if(type==='link') data=document.getElementById('q_link').value;
+    else if(type==='wifi') data='WIFI:T:'+document.getElementById('q_w_enc').value+';S:'+document.getElementById('q_w_ssid').value+';P:'+document.getElementById('q_w_pass').value+';;';
+    else if(type==='vcard') data='BEGIN:VCARD\nVERSION:3.0\nFN:'+document.getElementById('q_v_name').value+'\nTEL:'+document.getElementById('q_v_tel').value+'\nEMAIL:'+document.getElementById('q_v_email').value+'\nEND:VCARD';
+    else if(type==='phone') data='tel:'+document.getElementById('q_phone').value;
+    else if(type==='email') data='mailto:'+document.getElementById('q_email').value;
+    else if(type==='sms') data='smsto:'+document.getElementById('q_sms_to').value+':'+document.getElementById('q_sms_body').value;
+    else if(type==='geo') data='geo:'+document.getElementById('q_geo_lat').value+','+document.getElementById('q_geo_lng').value;
+    else if(type==='event'){
+      const fmt=d=>d?d.replace(/[-:T]/g,'').slice(0,15)+'Z':'';
+      data='BEGIN:VEVENT\nSUMMARY:'+document.getElementById('q_ev_title').value+'\nDTSTART:'+fmt(document.getElementById('q_ev_start').value)+'\nDTEND:'+fmt(document.getElementById('q_ev_end').value)+'\nEND:VEVENT';
+    }
+    if(!data.trim()){alert('متن خالی است');return;}
+    const size=document.getElementById('q_size').value;
+    const color=document.getElementById('q_color').value.replace('#','');
+    const url='https://api.qrserver.com/v1/create-qr-code/?size='+size+'x'+size+'&color='+color+'&data='+encodeURIComponent(data);
+    document.getElementById('q_result').innerHTML='<img src="'+url+'" style="max-width:'+size+'px;border-radius:1rem;border:4px solid #f9e0a0"><br><a href="'+url+'" download="qr.png" class="btn btn-primary" style="margin-top:1rem"><i class="fas fa-download"></i> دانلود</a>';
+  }catch(e){alert('خطا: '+e.message);}
+}
+</script></main>
+<footer>RAM HUB · ver 26.4 · تمام حقوق محفوظ است</footer>
+<script>
+function toggleDark() {
+  document.body.classList.toggle('dark');
+  localStorage.setItem('dark', document.body.classList.contains('dark') ? '1' : '0');
+}
+if (localStorage.getItem('dark') === '1') document.body.classList.add('dark');
+</script>
+</body></html>

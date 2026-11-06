@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>متن جامع | RAM HUB</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+:root { --bg:#fffef7; --card:#ffffff; --border:#fff0d6; --border2:#ffe2b5; --primary:#f9e0a0; --primary-h:#f7d97e; --text:#2d3e50; --text2:#5a6e7c; --accent:#c8821f; --accent2:#a0763a; --soft:#fefaf2; }
+body.dark { --bg:#1a1d24; --card:#252932; --border:#333846; --border2:#404657; --primary:#f9e0a0; --primary-h:#f7d97e; --text:#e8ecf1; --text2:#9ca6b5; --accent:#f9e0a0; --accent2:#d4b57a; --soft:#2a2f3a; }
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Inter','Segoe UI',system-ui,'Vazir',sans-serif; }
+body { background:var(--bg); padding:2rem 1.5rem; color:var(--text); transition:background .3s,color .3s; }
+.card { background:var(--card); border-radius:1.75rem; box-shadow:0 8px 20px rgba(0,0,0,0.02),0 2px 6px rgba(255,200,100,0.1); border:1px solid var(--border); overflow:hidden; }
+.btn { background:var(--soft); border:1px solid var(--border2); padding:0.6rem 1.2rem; border-radius:2rem; font-weight:500; font-size:0.85rem; cursor:pointer; color:var(--accent2); transition:all 0.2s ease; text-decoration:none; display:inline-flex; align-items:center; gap:0.5rem; justify-content:center; font-family:inherit; }
+.btn:hover { background:var(--border); }
+.btn-primary { background:var(--primary); border:none; color:#784a0e; box-shadow:0 2px 4px rgba(249,200,100,0.2); }
+.btn-primary:hover { background:var(--primary-h); transform:translateY(-2px); }
+.btn-gray { background:#f5f0e8; }
+.section { margin-bottom:2.5rem; }
+.section-title { font-size:1.5rem; font-weight:700; color:var(--accent); margin-bottom:1rem; padding-right:0.5rem; border-right:4px solid var(--primary); display:flex; align-items:center; gap:0.5rem; }
+.tools-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:1.5rem; }
+.tool-card { background:var(--card); border-radius:1.2rem; border:1px solid var(--border); overflow:hidden; transition:all 0.3s ease; box-shadow:0 4px 12px rgba(0,0,0,0.02); display:flex; flex-direction:column; text-decoration:none; color:inherit; }
+.tool-card:hover { transform:translateY(-5px); box-shadow:0 12px 24px rgba(0,0,0,0.05); border-color:var(--border2); }
+.card-icon { width:100%; height:110px; display:flex; align-items:center; justify-content:center; font-size:2.8rem; color:#e5a12e; background:var(--soft); border-bottom:2px solid var(--border); }
+.card-content { padding:1.2rem; display:flex; flex-direction:column; flex-grow:1; }
+.card-title { font-size:1.15rem; font-weight:700; color:var(--accent); margin-bottom:0.4rem; }
+.card-desc { color:var(--text2); font-size:0.85rem; line-height:1.6; margin-bottom:1rem; flex-grow:1; }
+h1 { font-weight:700; color:var(--accent); letter-spacing:-0.3px; }
+header.top { text-align:center; margin-bottom:2rem; }
+header.top a.home { color:var(--accent); text-decoration:none; }
+.hero p { color:var(--accent2); max-width:650px; margin:0.5rem auto 0; font-size:0.9rem; }
+footer { text-align:center; margin-top:2rem; font-size:0.7rem; color:#bfae95; border-top:1px solid var(--border); padding-top:1rem; }
+.search-box { width:100%; padding:0.9rem 1.5rem; border-radius:2rem; border:1px solid var(--border2); background:var(--soft); font-size:0.95rem; margin-bottom:1.5rem; color:var(--text); }
+.search-box:focus { outline:none; border-color:var(--primary); }
+.form-row { margin-bottom:0.8rem; }
+.form-row label { display:block; font-size:0.8rem; color:var(--accent2); margin-bottom:0.3rem; }
+.form-row input,.form-row textarea,.form-row select { width:100%; padding:0.7rem 1rem; border-radius:0.7rem; border:1px solid var(--border2); background:var(--soft); font-family:inherit; font-size:0.9rem; color:var(--text); }
+.form-row input:focus,.form-row textarea:focus,.form-row select:focus { outline:none; border-color:var(--primary); }
+.result-box { margin-top:1rem; padding:1rem; background:var(--soft); border:1px solid var(--border2); border-radius:0.8rem; font-family:monospace; font-size:0.9rem; color:var(--accent); word-break:break-all; min-height:2.5rem; }
+.tabs { display:flex; flex-wrap:wrap; gap:0.4rem; margin-bottom:1.5rem; border-bottom:2px solid var(--border); padding-bottom:0.5rem; }
+.tab { padding:0.5rem 1rem; border-radius:2rem; background:transparent; border:1px solid transparent; cursor:pointer; font-size:0.8rem; color:var(--text2); font-family:inherit; font-weight:500; transition:all .2s; }
+.tab:hover { background:var(--soft); color:var(--accent2); }
+.tab.active { background:var(--primary); color:#784a0e; border-color:var(--primary-h); }
+.panel { display:none; }
+.panel.active { display:block; }
+.setting-row { display:flex; justify-content:space-between; align-items:center; padding:0.6rem 0; border-bottom:1px dashed var(--border2); }
+.topbar { display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; flex-wrap:wrap; gap:1rem; }
+@media (max-width:680px) { body { padding:1rem; } .tools-grid { grid-template-columns:1fr; gap:1rem; } .section-title { font-size:1.3rem; } .tabs { overflow-x:auto; flex-wrap:nowrap; } }
+</style>
+
+</head>
+<body>
+<div class="topbar">
+  <a href="index.html" class="btn btn-gray"><i class="fas fa-home"></i> خانه</a>
+  <button class="btn btn-gray" onclick="toggleDark()"><i class="fas fa-moon"></i> تم</button>
+</div>
+<main><h1 style="margin-bottom:1.5rem">📝 متن جامع</h1><div class="tabs"><button class="tab active" data-tab="count"><i class="fas fa-file-lines"></i> شمارنده</button><button class="tab" data-tab="case"><i class="fas fa-a"></i> حروف</button><button class="tab" data-tab="reverse"><i class="fas fa-rotate"></i> معکوس</button><button class="tab" data-tab="replace"><i class="fas fa-right-left"></i> جایگزینی</button><button class="tab" data-tab="base64"><i class="fas fa-code"></i> Base64</button><button class="tab" data-tab="url"><i class="fas fa-link"></i> URL</button><button class="tab" data-tab="html"><i class="fas fa-code"></i> HTML</button><button class="tab" data-tab="sort"><i class="fas fa-arrow-down-a-z"></i> مرتب‌سازی</button><button class="tab" data-tab="repeat"><i class="fas fa-clone"></i> تکرار</button><button class="tab" data-tab="trim"><i class="fas fa-eraser"></i> حذف فاصله</button></div>
+<div class="card" style="padding:1.8rem">
+<div class="panel active" data-panel="count">
+  <div class="form-row"><textarea id="t_count" rows="6" oninput="tCnt()" placeholder="متن..."></textarea></div>
+  <div class="result-box" id="t_count_out" style="white-space:pre-wrap"></div>
+</div>
+<div class="panel" data-panel="case">
+  <div class="form-row"><select id="t_case_mode" onchange="tCase()"><option value="upper">همه بزرگ</option><option value="lower">همه کوچک</option><option value="title">اول کلمات بزرگ</option><option value="swap">برعکس</option></select></div>
+  <div class="form-row"><textarea id="t_case_in" rows="4" oninput="tCase()"></textarea></div>
+  <div class="result-box" id="t_case_out" style="white-space:pre-wrap"></div>
+</div>
+<div class="panel" data-panel="reverse">
+  <div class="form-row"><textarea id="t_rev_in" rows="4"></textarea></div>
+  <button class="btn btn-primary" onclick="tRev('char')">معکوس حروف</button>
+  <button class="btn btn-primary" onclick="tRev('word')">معکوس کلمات</button>
+  <button class="btn btn-primary" onclick="tRev('line')">معکوس خطوط</button>
+  <div class="result-box" id="t_rev_out" style="white-space:pre-wrap"></div>
+</div>
+<div class="panel" data-panel="replace">
+  <div class="form-row"><textarea id="t_rep_in" rows="4"></textarea></div>
+  <div class="form-row"><label>جستجو:</label><input id="t_rep_find" type="text"></div>
+  <div class="form-row"><label>جایگزین:</label><input id="t_rep_with" type="text"></div>
+  <button class="btn btn-primary" onclick="tRep()">جایگزینی همه</button>
+  <div class="result-box" id="t_rep_out" style="white-space:pre-wrap"></div>
+</div>
+<div class="panel" data-panel="base64">
+  <div class="form-row"><select id="t_b64_mode"><option value="enc">Encode</option><option value="dec">Decode</option></select></div>
+  <div class="form-row"><textarea id="t_b64_in" rows="4" style="direction:ltr"></textarea></div>
+  <button class="btn btn-primary" onclick="tB64()">اجرا</button>
+  <div class="result-box" id="t_b64_out"></div>
+</div>
+<div class="panel" data-panel="url">
+  <div class="form-row"><select id="t_url_mode"><option value="enc">Encode</option><option value="dec">Decode</option></select></div>
+  <div class="form-row"><textarea id="t_url_in" rows="3" style="direction:ltr"></textarea></div>
+  <button class="btn btn-primary" onclick="tUrl()">اجرا</button>
+  <div class="result-box" id="t_url_out"></div>
+</div>
+<div class="panel" data-panel="html">
+  <div class="form-row"><select id="t_html_mode"><option value="enc">Escape</option><option value="dec">Unescape</option></select></div>
+  <div class="form-row"><textarea id="t_html_in" rows="4" style="direction:ltr"></textarea></div>
+  <button class="btn btn-primary" onclick="tHtml()">اجرا</button>
+  <div class="result-box" id="t_html_out"></div>
+</div>
+<div class="panel" data-panel="sort">
+  <div class="form-row"><textarea id="t_sort_in" rows="5" placeholder="هر خط یک آیتم"></textarea></div>
+  <button class="btn btn-primary" onclick="tSort('asc')">صعودی</button>
+  <button class="btn btn-primary" onclick="tSort('desc')">نزولی</button>
+  <div class="result-box" id="t_sort_out" style="white-space:pre-wrap"></div>
+</div>
+<div class="panel" data-panel="repeat">
+  <div class="form-row"><textarea id="t_rep2_in" rows="3"></textarea></div>
+  <div class="form-row"><label>تعداد:</label><input id="t_rep2_n" type="number" value="5" min="1" max="1000"></div>
+  <button class="btn btn-primary" onclick="tRep2()">تکرار</button>
+  <div class="result-box" id="t_rep2_out" style="white-space:pre-wrap"></div>
+</div>
+<div class="panel" data-panel="trim">
+  <div class="form-row"><textarea id="t_trim_in" rows="5"></textarea></div>
+  <button class="btn btn-primary" onclick="tTrim()">پاکسازی</button>
+  <div class="result-box" id="t_trim_out" style="white-space:pre-wrap"></div>
+</div>
+</div>
+
+<script>
+document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => {
+  document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(x => x.classList.remove('active'));
+  t.classList.add('active');
+  document.querySelector('[data-panel="'+t.dataset.tab+'"]').classList.add('active');
+}));
+function tCnt(){
+  const t=document.getElementById('t_count').value, w=t.trim()?t.trim().split(/\s+/).length:0;
+  document.getElementById('t_count_out').textContent='کلمات: '+w+' | حروف: '+t.length+' | بدون فاصله: '+t.replace(/\s/g,'').length+' | خطوط: '+(t.split('\n').length)+' | پاراگراف: '+(t.trim()?t.trim().split(/\n\s*\n/).length:0);
+}
+function tCase(){
+  const m=document.getElementById('t_case_mode').value, t=document.getElementById('t_case_in').value;
+  const r=m==='upper'?t.toUpperCase():m==='lower'?t.toLowerCase():m==='title'?t.replace(/\w\S*/g,w=>w[0].toUpperCase()+w.slice(1).toLowerCase()):t.split('').map(c=>c===c.toUpperCase()?c.toLowerCase():c.toUpperCase()).join('');
+  document.getElementById('t_case_out').textContent=r;
+}
+function tRev(m){
+  const t=document.getElementById('t_rev_in').value;
+  const r=m==='char'?[...t].reverse().join(''):m==='word'?t.split('\n').map(l=>l.split(' ').reverse().join(' ')).join('\n'):t.split('\n').reverse().join('\n');
+  document.getElementById('t_rev_out').textContent=r;
+}
+function tRep(){
+  const t=document.getElementById('t_rep_in').value, f=document.getElementById('t_rep_find').value, w=document.getElementById('t_rep_with').value;
+  document.getElementById('t_rep_out').textContent=t.split(f).join(w);
+}
+function tB64(){
+  const m=document.getElementById('t_b64_mode').value, t=document.getElementById('t_b64_in').value, o=document.getElementById('t_b64_out');
+  try{ o.textContent=m==='enc'?btoa(unescape(encodeURIComponent(t))):decodeURIComponent(escape(atob(t))); }catch(e){o.textContent='خطا: '+e.message;}
+}
+function tUrl(){
+  const m=document.getElementById('t_url_mode').value, t=document.getElementById('t_url_in').value, o=document.getElementById('t_url_out');
+  try{ o.textContent=m==='enc'?encodeURIComponent(t):decodeURIComponent(t); }catch(e){o.textContent='خطا: '+e.message;}
+}
+function tHtml(){
+  const m=document.getElementById('t_html_mode').value, t=document.getElementById('t_html_in').value, d=document.createElement('div');
+  if(m==='enc'){d.textContent=t;document.getElementById('t_html_out').textContent=d.innerHTML;}
+  else {d.innerHTML=t;document.getElementById('t_html_out').textContent=d.textContent;}
+}
+function tSort(dir){
+  const lines=document.getElementById('t_sort_in').value.split('\n').filter(x=>x.trim());
+  lines.sort((a,b)=>dir==='asc'?a.localeCompare(b,'fa'):b.localeCompare(a,'fa'));
+  document.getElementById('t_sort_out').textContent=lines.join('\n');
+}
+function tRep2(){
+  const t=document.getElementById('t_rep2_in').value, n=parseInt(document.getElementById('t_rep2_n').value)||1;
+  document.getElementById('t_rep2_out').textContent=Array(n).fill(t).join('\n');
+}
+function tTrim(){
+  let t=document.getElementById('t_trim_in').value;
+  t=t.replace(/[ \t]+/g,' ').replace(/^ +| +$/gm,'').replace(/\n{3,}/g,'\n\n').trim();
+  document.getElementById('t_trim_out').textContent=t;
+}
+tCnt();
+</script></main>
+<footer>RAM HUB · ver 26.4 · تمام حقوق محفوظ است</footer>
+<script>
+function toggleDark() {
+  document.body.classList.toggle('dark');
+  localStorage.setItem('dark', document.body.classList.contains('dark') ? '1' : '0');
+}
+if (localStorage.getItem('dark') === '1') document.body.classList.add('dark');
+</script>
+</body></html>

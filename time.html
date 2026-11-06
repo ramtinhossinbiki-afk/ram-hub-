@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>زمان و تاریخ | RAM HUB</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+:root { --bg:#fffef7; --card:#ffffff; --border:#fff0d6; --border2:#ffe2b5; --primary:#f9e0a0; --primary-h:#f7d97e; --text:#2d3e50; --text2:#5a6e7c; --accent:#c8821f; --accent2:#a0763a; --soft:#fefaf2; }
+body.dark { --bg:#1a1d24; --card:#252932; --border:#333846; --border2:#404657; --primary:#f9e0a0; --primary-h:#f7d97e; --text:#e8ecf1; --text2:#9ca6b5; --accent:#f9e0a0; --accent2:#d4b57a; --soft:#2a2f3a; }
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Inter','Segoe UI',system-ui,'Vazir',sans-serif; }
+body { background:var(--bg); padding:2rem 1.5rem; color:var(--text); transition:background .3s,color .3s; }
+.card { background:var(--card); border-radius:1.75rem; box-shadow:0 8px 20px rgba(0,0,0,0.02),0 2px 6px rgba(255,200,100,0.1); border:1px solid var(--border); overflow:hidden; }
+.btn { background:var(--soft); border:1px solid var(--border2); padding:0.6rem 1.2rem; border-radius:2rem; font-weight:500; font-size:0.85rem; cursor:pointer; color:var(--accent2); transition:all 0.2s ease; text-decoration:none; display:inline-flex; align-items:center; gap:0.5rem; justify-content:center; font-family:inherit; }
+.btn:hover { background:var(--border); }
+.btn-primary { background:var(--primary); border:none; color:#784a0e; box-shadow:0 2px 4px rgba(249,200,100,0.2); }
+.btn-primary:hover { background:var(--primary-h); transform:translateY(-2px); }
+.btn-gray { background:#f5f0e8; }
+.section { margin-bottom:2.5rem; }
+.section-title { font-size:1.5rem; font-weight:700; color:var(--accent); margin-bottom:1rem; padding-right:0.5rem; border-right:4px solid var(--primary); display:flex; align-items:center; gap:0.5rem; }
+.tools-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:1.5rem; }
+.tool-card { background:var(--card); border-radius:1.2rem; border:1px solid var(--border); overflow:hidden; transition:all 0.3s ease; box-shadow:0 4px 12px rgba(0,0,0,0.02); display:flex; flex-direction:column; text-decoration:none; color:inherit; }
+.tool-card:hover { transform:translateY(-5px); box-shadow:0 12px 24px rgba(0,0,0,0.05); border-color:var(--border2); }
+.card-icon { width:100%; height:110px; display:flex; align-items:center; justify-content:center; font-size:2.8rem; color:#e5a12e; background:var(--soft); border-bottom:2px solid var(--border); }
+.card-content { padding:1.2rem; display:flex; flex-direction:column; flex-grow:1; }
+.card-title { font-size:1.15rem; font-weight:700; color:var(--accent); margin-bottom:0.4rem; }
+.card-desc { color:var(--text2); font-size:0.85rem; line-height:1.6; margin-bottom:1rem; flex-grow:1; }
+h1 { font-weight:700; color:var(--accent); letter-spacing:-0.3px; }
+header.top { text-align:center; margin-bottom:2rem; }
+header.top a.home { color:var(--accent); text-decoration:none; }
+.hero p { color:var(--accent2); max-width:650px; margin:0.5rem auto 0; font-size:0.9rem; }
+footer { text-align:center; margin-top:2rem; font-size:0.7rem; color:#bfae95; border-top:1px solid var(--border); padding-top:1rem; }
+.search-box { width:100%; padding:0.9rem 1.5rem; border-radius:2rem; border:1px solid var(--border2); background:var(--soft); font-size:0.95rem; margin-bottom:1.5rem; color:var(--text); }
+.search-box:focus { outline:none; border-color:var(--primary); }
+.form-row { margin-bottom:0.8rem; }
+.form-row label { display:block; font-size:0.8rem; color:var(--accent2); margin-bottom:0.3rem; }
+.form-row input,.form-row textarea,.form-row select { width:100%; padding:0.7rem 1rem; border-radius:0.7rem; border:1px solid var(--border2); background:var(--soft); font-family:inherit; font-size:0.9rem; color:var(--text); }
+.form-row input:focus,.form-row textarea:focus,.form-row select:focus { outline:none; border-color:var(--primary); }
+.result-box { margin-top:1rem; padding:1rem; background:var(--soft); border:1px solid var(--border2); border-radius:0.8rem; font-family:monospace; font-size:0.9rem; color:var(--accent); word-break:break-all; min-height:2.5rem; }
+.tabs { display:flex; flex-wrap:wrap; gap:0.4rem; margin-bottom:1.5rem; border-bottom:2px solid var(--border); padding-bottom:0.5rem; }
+.tab { padding:0.5rem 1rem; border-radius:2rem; background:transparent; border:1px solid transparent; cursor:pointer; font-size:0.8rem; color:var(--text2); font-family:inherit; font-weight:500; transition:all .2s; }
+.tab:hover { background:var(--soft); color:var(--accent2); }
+.tab.active { background:var(--primary); color:#784a0e; border-color:var(--primary-h); }
+.panel { display:none; }
+.panel.active { display:block; }
+.setting-row { display:flex; justify-content:space-between; align-items:center; padding:0.6rem 0; border-bottom:1px dashed var(--border2); }
+.topbar { display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; flex-wrap:wrap; gap:1rem; }
+@media (max-width:680px) { body { padding:1rem; } .tools-grid { grid-template-columns:1fr; gap:1rem; } .section-title { font-size:1.3rem; } .tabs { overflow-x:auto; flex-wrap:nowrap; } }
+</style>
+
+</head>
+<body>
+<div class="topbar">
+  <a href="index.html" class="btn btn-gray"><i class="fas fa-home"></i> خانه</a>
+  <button class="btn btn-gray" onclick="toggleDark()"><i class="fas fa-moon"></i> تم</button>
+</div>
+<main><h1 style="margin-bottom:1.5rem">⏰ زمان و تاریخ</h1><div class="tabs"><button class="tab active" data-tab="timer"><i class="fas fa-stopwatch"></i> تایمر</button><button class="tab" data-tab="pomodoro"><i class="fas fa-clock"></i> پومودورو</button><button class="tab" data-tab="stopwatch"><i class="fas fa-gauge"></i> کرنومتر</button><button class="tab" data-tab="world"><i class="fas fa-globe"></i> ساعت جهانی</button><button class="tab" data-tab="countdown"><i class="fas fa-hourglass"></i> شمارش معکوس</button><button class="tab" data-tab="today"><i class="fas fa-calendar"></i> تاریخ امروز</button><button class="tab" data-tab="convert"><i class="fas fa-right-left"></i> تبدیل تاریخ</button><button class="tab" data-tab="weekday"><i class="fas fa-calendar-day"></i> روز هفته</button><button class="tab" data-tab="age"><i class="fas fa-cake-candles"></i> محاسبه سن</button><button class="tab" data-tab="weeknum"><i class="fas fa-calendar-week"></i> هفته سال</button></div>
+<div class="card" style="padding:1.8rem">
+<div class="panel active" data-panel="timer">
+  <div id="tm_d" style="font-size:3rem;font-weight:bold;font-family:monospace;color:#c8821f;text-align:center;margin:1rem 0">00:00</div>
+  <div class="form-row"><label>دقیقه:</label><input id="tm_m" type="number" value="5" min="0" max="999"></div>
+  <button class="btn btn-primary" onclick="tmStart()">شروع</button>
+  <button class="btn btn-gray" onclick="tmReset()">ریست</button>
+</div>
+<div class="panel" data-panel="pomodoro">
+  <div id="pom_d" style="font-size:3rem;font-weight:bold;font-family:monospace;color:#c8821f;text-align:center;margin:1rem 0">25:00</div>
+  <button class="btn btn-primary" onclick="pomStart()">شروع</button>
+  <button class="btn btn-gray" onclick="pomReset()">ریست</button>
+</div>
+<div class="panel" data-panel="stopwatch">
+  <div id="sw_d" style="font-size:2.5rem;font-weight:bold;font-family:monospace;color:#c8821f;text-align:center;margin:1rem 0">00:00.000</div>
+  <button class="btn btn-primary" onclick="swStart()">شروع/توقف</button>
+  <button class="btn btn-gray" onclick="swLap()">دور</button>
+  <button class="btn btn-gray" onclick="swReset()">ریست</button>
+  <div class="result-box" id="sw_laps" style="white-space:pre-wrap;direction:ltr;text-align:left"></div>
+</div>
+<div class="panel" data-panel="world">
+  <div id="wc_out" style="font-size:1rem;line-height:2.3"></div>
+</div>
+<div class="panel" data-panel="countdown">
+  <div class="form-row"><label>تاریخ و زمان:</label><input id="cd_dt" type="datetime-local" oninput="cdUpdate()"></div>
+  <div class="result-box" id="cd_out" style="font-size:1.5rem;text-align:center;font-family:monospace"></div>
+</div>
+<div class="panel" data-panel="today">
+  <div class="result-box" id="td_out" style="font-size:1.3rem;text-align:center;white-space:pre-wrap"></div>
+</div>
+<div class="panel" data-panel="convert">
+  <div class="form-row"><label>تاریخ میلادی:</label><input id="cv_date" type="date" onchange="cvDateFn()"></div>
+  <div class="result-box" id="cv_date_out" style="white-space:pre-wrap"></div>
+</div>
+<div class="panel" data-panel="weekday">
+  <div class="form-row"><label>تاریخ:</label><input id="wd_date" type="date" onchange="wdFn()"></div>
+  <div class="result-box" id="wd_out" style="font-size:1.2rem;text-align:center"></div>
+</div>
+<div class="panel" data-panel="age">
+  <div class="form-row"><label>تاریخ تولد:</label><input id="ag_date" type="date" onchange="agFn()"></div>
+  <div class="result-box" id="ag_out" style="white-space:pre-wrap;text-align:center"></div>
+</div>
+<div class="panel" data-panel="weeknum">
+  <div class="form-row"><label>تاریخ:</label><input id="wn_date" type="date" onchange="wnFn()"></div>
+  <div class="result-box" id="wn_out" style="text-align:center"></div>
+</div>
+</div>
+
+<script>
+document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => {
+  document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(x => x.classList.remove('active'));
+  t.classList.add('active');
+  document.querySelector('[data-panel="'+t.dataset.tab+'"]').classList.add('active');
+}));
+// Timer
+let tmIv=null, tmRem=0;
+function tmShow(){const m=String(Math.floor(tmRem/60)).padStart(2,'0'),s=String(tmRem%60).padStart(2,'0');document.getElementById('tm_d').textContent=m+':'+s;document.title=m+':'+s;}
+function tmStart(){clearInterval(tmIv);if(tmRem<=0)tmRem=(parseInt(document.getElementById('tm_m').value)||0)*60;tmIv=setInterval(()=>{tmRem--;if(tmRem<=0){clearInterval(tmIv);tmRem=0;tmShow();alert('⏰ تمام شد!');return;}tmShow();},1000);tmShow();}
+function tmReset(){clearInterval(tmIv);tmRem=0;tmShow();document.title='تایمر';}
+// Pomodoro
+let pomIv=null, pomRem=25*60;
+function pomShow(){const m=String(Math.floor(pomRem/60)).padStart(2,'0'),s=String(pomRem%60).padStart(2,'0');document.getElementById('pom_d').textContent=m+':'+s;}
+function pomStart(){clearInterval(pomIv);pomIv=setInterval(()=>{pomRem--;if(pomRem<=0){clearInterval(pomIv);pomRem=0;alert('⏰ استراحت!');return;}pomShow();},1000);pomShow();}
+function pomReset(){clearInterval(pomIv);pomRem=25*60;pomShow();}
+// Stopwatch
+let swStart0=0,swElapsed=0,swIv=null,swLaps=[];
+function swFmt(ms){const h=Math.floor(ms/3600000),m=Math.floor(ms%3600000/60000),s=Math.floor(ms%60000/1000),ml=ms%1000;return String(h).padStart(2,'0')+':'+String(m).padStart(2,'0')+':'+String(s).padStart(2,'0')+'.'+String(ml).padStart(3,'0');}
+function swShow(){document.getElementById('sw_d').textContent=swFmt(swElapsed+(swIv?Date.now()-swStart0:0));}
+function swStart(){if(swIv){clearInterval(swIv);swElapsed+=Date.now()-swStart0;swIv=null;}else{swStart0=Date.now();swIv=setInterval(swShow,31);}swShow();}
+function swReset(){clearInterval(swIv);swIv=null;swElapsed=0;swLaps=[];document.getElementById('sw_laps').textContent='';swShow();}
+function swLap(){const t=swElapsed+(swIv?Date.now()-swStart0:0);swLaps.push(swFmt(t));document.getElementById('sw_laps').textContent=swLaps.map((x,i)=>'#'+(i+1)+': '+x).join('\n');}
+// World
+function wcUpdate(){
+  const cities=[['تهران','Asia/Tehran'],['لندن','Europe/London'],['نیویورک','America/New_York'],['توکیو','Asia/Tokyo'],['دبی','Asia/Dubai'],['پاریس','Europe/Paris'],['استانبول','Europe/Istanbul'],['سیدنی','Australia/Sydney']];
+  let html='';
+  for(const c of cities){
+    const t=new Date().toLocaleTimeString('fa-IR',{timeZone:c[1]});
+    html+='<div style="display:flex;justify-content:space-between;border-bottom:1px dashed #ffe2bc;padding:0.3rem 0"><b>'+c[0]+'</b><span style="font-family:monospace">'+t+'</span></div>';
+  }
+  document.getElementById('wc_out').innerHTML=html;
+}
+setInterval(wcUpdate,1000); wcUpdate();
+// Countdown
+function cdUpdate(){
+  const v=document.getElementById('cd_dt').value;
+  if(!v){document.getElementById('cd_out').textContent='تاریخ انتخاب کن';return;}
+  const diff=new Date(v)-new Date();
+  if(diff<=0){document.getElementById('cd_out').textContent='⏰ رسید!';return;}
+  const d=Math.floor(diff/86400000),h=Math.floor(diff%86400000/3600000),m=Math.floor(diff%3600000/60000),s=Math.floor(diff%60000/1000);
+  document.getElementById('cd_out').textContent=d+' روز و '+h+':'+String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+}
+setInterval(cdUpdate,1000);
+// Today
+document.getElementById('td_out').textContent='📅 '+new Date().toLocaleDateString('fa-IR',{year:'numeric',month:'long',day:'numeric',weekday:'long'});
+// Convert
+function cvDateFn(){
+  const t=document.getElementById('cv_date').value;
+  if(!t){document.getElementById('cv_date_out').textContent='تاریخ انتخاب کن';return;}
+  const d=new Date(t);
+  document.getElementById('cv_date_out').textContent='میلادی: '+d.toLocaleDateString('en-GB')+'\nشمسی: '+d.toLocaleDateString('fa-IR',{year:'numeric',month:'long',day:'numeric',weekday:'long'})+'\nایزو: '+d.toISOString();
+}
+// Weekday
+function wdFn(){
+  const t=document.getElementById('wd_date').value;
+  if(!t)return;
+  const d=new Date(t);
+  document.getElementById('wd_out').textContent='📅 '+d.toLocaleDateString('fa-IR',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+}
+// Age
+function agFn(){
+  const t=document.getElementById('ag_date').value;
+  if(!t)return;
+  const b=new Date(t), n=new Date();
+  let y=n.getFullYear()-b.getFullYear(), m=n.getMonth()-b.getMonth(), d=n.getDate()-b.getDate();
+  if(d<0){m--;d+=new Date(n.getFullYear(),n.getMonth(),0).getDate();}
+  if(m<0){y--;m+=12;}
+  const days=Math.floor((n-b)/86400000);
+  document.getElementById('ag_out').textContent='سن: '+y+' سال و '+m+' ماه و '+d+' روز\nمجموع روزها: '+days+'\nساعت‌ها: '+(days*24);
+}
+// Weeknum
+function wnFn(){
+  const t=document.getElementById('wn_date').value;
+  if(!t)return;
+  const d=new Date(t);
+  const start=new Date(d.getFullYear(),0,1);
+  const days=Math.floor((d-start)/86400000);
+  document.getElementById('wn_out').textContent='هفته '+(Math.ceil((days+start.getDay()+1)/7))+' از سال '+d.getFullYear();
+}
+tmShow(); pomShow(); swShow();
+</script></main>
+<footer>RAM HUB · ver 26.4 · تمام حقوق محفوظ است</footer>
+<script>
+function toggleDark() {
+  document.body.classList.toggle('dark');
+  localStorage.setItem('dark', document.body.classList.contains('dark') ? '1' : '0');
+}
+if (localStorage.getItem('dark') === '1') document.body.classList.add('dark');
+</script>
+</body></html>
